@@ -1,6 +1,6 @@
 Scribd Book Ripper
 ============
-[![GitHub stars](https://img.shields.io/github/stars/athossampayo/scrbd_book_ripper)](https://github.com/athossampayo/scrbd_book_ripper/stargazers) [![GitHub issues](https://img.shields.io/github/issues/athossampayo/scrbd_book_ripper)](https://github.com/athossampayo/scrbd_book_ripper/issues) [![GitHub forks](https://img.shields.io/github/forks/athossampayo/scrbd_book_ripper)](https://github.com/athossampayo/scrbd_book_ripper/network) [![Type version](https://img.shields.io/badge/type%20version-image-blue)](https://img.shields.io/badge/vers__type-image__version-blue) </br>
+[![GitHub stars](https://img.shields.io/github/stars/athossampayo/scrbd_book_ripper)](https://github.com/athossampayo/scrbd_book_ripper/stargazers) [![GitHub issues](https://img.shields.io/github/issues/athossampayo/scrbd_book_ripper)](https://github.com/athossampayo/scrbd_book_ripper/issues) [![GitHub forks](https://img.shields.io/github/forks/athossampayo/scrbd_book_ripper)](https://github.com/athossampayo/scrbd_book_ripper/network) [![Version type](https://img.shields.io/badge/version%20type-image-blue)](https://img.shields.io/badge/vers__type-image__version-blue) </br>
 
 ### Python script to backup and download scribd books with **premium account**.
 #### For any of this type of script to work you need to have a premium account. It can also be a free trial account.
