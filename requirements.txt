@@ -1,0 +1,4 @@
+selenium
+fpdf
+PIL
+ocrmypdf
