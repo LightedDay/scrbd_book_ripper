@@ -9,7 +9,7 @@ Scribd Book Ripper
 ## Table of contents
 * [General info](#general-info)
 * [Stats](#stats)
-* [Python Dependencies](#python-dependencies)
+* [Dependencies](#dependencies)
 * [OCR Setup](#ocr-setup)
 * [Script Setup](#script-setup)
 * [Disclaimer](#disclaimer)
@@ -17,7 +17,8 @@ Scribd Book Ripper
 ## General info
 This project receives one or more Scribd links and generates a PDF within the books content. It has the option to generate an Searchable PDF too.
 
-## Stats _(Will improve in next update!)_
+## Stats 
+֎ _(Will improve in next update!)_ ֎
 ### Times:
 * Downloading a 300 pages book in ± 11,5 minutes in my setup.
 * OCR-ed 300 pages in ± 8 minutes.
@@ -27,13 +28,14 @@ This project receives one or more Scribd links and generates a PDF within the bo
 * OCR-ed PDF: 9,20MB
 ##### To updated with more in future. Also acceptting other's tests stats.
 
-## Pyton Depencencies
+## Dependencies
 This project needs the following python libraries to work:
 * selenium
 * fpdf
 * PIL
 * ocrmypdf _(Optional. Needed for OCR)_
 ##### For easy installing all at once, use ```pip install requirements.txt```.
+* And will need to have Google Chrome installed. You can get it from [here](https://www.google.com/chrome/)
 
 ## OCR Setup
 If you intend to use the OCR function at the end, you will need to install the following programs, as they are needed for running the ocrmypdf module: </br>
@@ -54,6 +56,8 @@ For full details on installation, see: https://tesseract-ocr.github.io/tessdoc/H
 Just download and install from: https://www.ghostscript.com/download/gsdnld.html
 
 ## Script Setup
+### ChromeDriver
++ Download chromewebdriver from [here](https://sites.google.com/a/chromium.org/chromedriver/downloads). Move the driver file to script's root.
 ### Modify the _config.json_ file:
 + Add your email
 + Add your passoword
