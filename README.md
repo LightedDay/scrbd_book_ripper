@@ -4,8 +4,8 @@ Scribd Book Ripper
 
 ### Python script to backup and download scribd books with **premium account**.
 #### For any of this type of script to work you need to have a premium account. It can also be a free trial account.
-#### This version creates a screenshot of every book page and then generates a PDF file with it. It has the optional hability to generate Searchable Text (as known as OCR) too.
-### I have a version of this script that isn't screenshot-based in finishing proccess, just need to solve one big problem and will release it.
+#### This version creates a screenshot of every book page and then generates a PDF file with it. It has the optional ability to generate Searchable Text (as known as OCR) too.
+### I have a version of this script that isn't screenshot-based in finishing process, just need to solve one big problem and will release it.
 ## Table of contents
 * [General info](#general-info)
 * [Stats](#stats)
@@ -15,7 +15,7 @@ Scribd Book Ripper
 * [Disclaimer](#disclaimer)
 
 ## General info
-This project receives one or more Scribd links and generates a PDF within the books content. It has the option to generate an Searchable PDF too.
+This project receives one or more Scribd links and generates a PDF within the books content. It has the option to generate a Searchable PDF too.
 
 ## Stats 
 ֎ _(Will improve in next update!)_ ֎
@@ -26,7 +26,7 @@ This project receives one or more Scribd links and generates a PDF within the bo
 ### Sizes:
 * Non OCR-ed PDF: 11,5MB
 * OCR-ed PDF: 9,20MB
-##### To updated with more in future. Also acceptting other's tests stats.
+##### To updated with more in future. Also accepting other's tests stats.
 
 ## Dependencies
 This project needs the following python libraries to work:
@@ -60,8 +60,8 @@ Just download and install from: https://www.ghostscript.com/download/gsdnld.html
 + Download chromewebdriver from [here](https://sites.google.com/a/chromium.org/chromedriver/downloads). Move the driver file to script's root.
 ### Modify the _config.json_ file:
 + Add your email
-+ Add your passoword
-+ "is_lis"; if you want to load the links from the _book_list.txt_ file, mark as True
++ Add your password
++ "is_list"; if you want to load the links from the _book_list.txt_ file, mark as True
 + "Do_OCR": if you want to automatically execute the OCR process after downloading the file, mark as True
 #### Beware! OCR can be time consuming for big books. Test with small ones first so you know how is the output.
 
@@ -69,7 +69,7 @@ Just download and install from: https://www.ghostscript.com/download/gsdnld.html
 + Just paste one link per line.
 
 ## Disclaimer
-This project is for **educational purposes** only. It is not advised to used this for any type of copyright or Scribd TOS infringement and **I am not responsible for any misuse of this piece of code.**
+This project is for **educational purposes** only. It is not advised to use this for any type of copyright or Scribd TOS infringement and **I am not responsible for any misuse of this piece of code.**
 
 ## To-Do
 - [ ] Correct error when trying to click 'Save book" popup not clicking in time for the screenshot and it appears on the final book
