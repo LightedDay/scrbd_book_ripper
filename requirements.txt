@@ -1,4 +1,4 @@
 selenium
 fpdf
-PIL
+Pillow
 ocrmypdf
