@@ -32,7 +32,7 @@ This project receives one or more Scribd links and generates a PDF within the bo
 This project needs the following python libraries to work:
 * selenium
 * fpdf
-* PIL
+* Pillow
 * ocrmypdf _(Optional. Needed for OCR)_
 ##### For easy installing all at once, use ```pip install requirements.txt```.
 * And will need to have Google Chrome installed. You can get it from [here](https://www.google.com/chrome/)
