@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
+import selenium.webdriver.common.by as By
 from time import sleep
 import os, shutil, re
 from fpdf import FPDF
@@ -30,9 +31,10 @@ class Screenshots:
         try:            #typing email and password and then clicking to Log In
             self.driver.find_element_by_id('login_or_email').send_keys(email)
             self.driver.find_element_by_id('login_password').send_keys(password)
-            sign_buttom = '/html/body/div[4]/div[2]/div/div[3]/div/div/div/div/div[2]/div[2]/div[2]/form/fieldset/div[3]/button'
+            sign_buttom = '/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div[2]/form/fieldset/div[3]/button'
             self.driver.find_element_by_xpath(sign_buttom).click()
             print("Clicked Log In buttom")
+            return sign_buttom
                                                    
         except NoSuchElementException:
             self.driver.quit()
@@ -60,6 +62,9 @@ class Screenshots:
             self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[4]/div[2]/div/a[2]').click()
             print("First click to log in done!")
             sleep(3)
+            #Working on this later:
+            #self.wait.until(EC.element_to_be_clickable(By(self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/a'))))
+            #print('CLICOUUUUUU')
             self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/a').click()
             print("Second click to log in done!")
 
@@ -69,9 +74,15 @@ class Screenshots:
             self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div[2]/a').click()
             print("Third click to log in done!")
             sleep(3)
-            self.login(email,password, sign_mail_read, sign_buttom_read)    #Execute login
-            self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div[2]/form/fieldset/div[3]/button').click()
-            print("Login sucessfull")
+            sign_button = self.login(email,password, sign_mail_read, sign_buttom_read)    #Execute login
+            #self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div[2]/form/fieldset/div[3]/button').click()
+            sleep(2)
+            try:    #Check if login is successfull or not (failed login means SignIn button still exists)
+                sign_in_button = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div/div[2]/div[2]/form/fieldset/div[3]/button')
+            except NoSuchElementException:
+                print("Login Failed. Please check your credentials at the 'config.json' file")
+                self.driver.quit()
+                quit()
             sleep(7)
             self.driver.back()
             print("Got back to books page")
