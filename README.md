@@ -73,9 +73,8 @@ This project is for **educational purposes** only. It is not advised to use this
 
 ## To-Do
 - [ ] Correct error when trying to click 'Save book" popup not clicking in time for the screenshot and it appears on the final book
-- [ ] Correct line 33 login error and add steps to check if login was really successfull or not (not it interprets as successfull every time)
 - [ ] Optimize speed (change every ```time.sleep()``` to ```element_to_be_clickable()``` selenium function
 - [ ] Finish and release text-based version of this script
-- [ ] Be able to continue already started downloads by checking already downloaded pages
+- [ ] Be able to continue already started downloads by checking already downloaded pages (already working in this)
 
 
