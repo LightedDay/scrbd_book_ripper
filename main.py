@@ -41,6 +41,17 @@ def ocr(book_title):
     else:
         pass
 
+#function to replace any forbidden filename characters so later seçenium doesnt have problem saving screenshot files
+def book_title_cleaning(book_title):
+    reserved = ['<','>',':','"','/','\\','|','?','*']
+    book_title_cleaned = ""
+    for i in range(len(book_title)):
+        if book_title[i] in reserved:
+            book_title_cleaned += " "
+        else:
+            book_title_cleaned += book_title[i]
+    return book_title_cleaned
+
 #reads the config.json    
 
 json_file = open('./config.json')
@@ -76,6 +87,7 @@ for url in book_urls:
     acess = list(pre_checks.read_link(url))     #receives book_url and book_ttle
     read_url = acess[0]
     book_title = acess[1]
+    book_title_cleaning(book_title)             #cleaning any forbidden filename characters
     screenshots.screenshot(read_url, book_title, email, password, book_id)  #whole login and screenshot process. Check
                                                                             #base.py for details
     pdf_gen.main(book_title, book_id)           #Whole images pdf creation. Check base.py for details 
