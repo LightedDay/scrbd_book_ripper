@@ -38,47 +38,50 @@ class Screenshots:
                                                    
         except NoSuchElementException:
             self.driver.quit()
-            print('NoSuchElementException on login() function; lines 24-39')
+            print('NoSuchElementException on login() function')
         
     #Checks if its in Portuguese version of the site and if not, make the change    
     def check_language(self):
-        language = self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[4]/div[1]/div/div/a/span[2]').text
-        if language != 'PT':
+        language = self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[3]/div[1]/div/div/a/span[2]').text
+        if language != 'PT' or language != 'pt':
             print('Setting language to Portuguese')
-            self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[4]/div[1]/div/div/a/span[3]').click()
-            self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[4]/div[1]/div/div/div/div[2]/ul/li[3]/a/div').click()
+            self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[3]/div[1]/div/div/a/span[2]').click()
+            self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[3]/div[1]/div/div/div/div[2]/ul/li[3]/a').click()
         else:
             print('Right site language!')
 
     #checks if its logged or not and if not, log in
     def login_check(self, email, password):
         try:
-            arrow = self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[4]/div[2]/a/div/span')
+            arrow = self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[3]/div[2]/div/a/div/span')
             logged_check = True
         except:
             logged_check = False
         if logged_check == False:
             #Start to log in
-            self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[4]/div[2]/div/a[2]').click()
+            self.driver.find_element_by_xpath('/html/body/span[1]/div/header/div[1]/div[3]/div[2]/div/a[1]').click()
             print("First click to log in done!")
             sleep(3)
             #Working on this later:
             #self.wait.until(EC.element_to_be_clickable(By(self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/a'))))
             #print('CLICOUUUUUU')
-            self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/a').click()
-            print("Second click to log in done!")
-
-            sign_mail_read = '/html/body/div[3]/div[2]/div/div[3]/div/div/div/div/div[2]/div[1]/div[2]/div[2]/a'
-            sign_buttom_read = '/html/body/div[4]/div[2]/div/div[3]/div/div/div/div/div[2]/div[2]/div[2]/form/fieldset/div[3]/button'
-        
             self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div[2]/a').click()
-            print("Third click to log in done!")
-            sleep(3)
+            print("Second click to log in done!")
+            sign_mail_read = None
+            sign_buttom_read = None
+
+            #sign_mail_read = '/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div[2]/form/fieldset/div[1]/div[1]/label/div/input'
+            #sign_buttom_read = '/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div[2]/form/fieldset/div[1]/div[2]/div/label/div/input'
+        
+            #self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[1]/div[2]/div[2]/a').click()
+            #print("Third click to log in done!")
+            #sleep(3)
             sign_button = self.login(email,password, sign_mail_read, sign_buttom_read)    #Execute login
             #self.driver.find_element_by_xpath('/html/body/div[3]/div[2]/div/div[2]/div/div/div/div/div[2]/div[2]/div[2]/form/fieldset/div[3]/button').click()
             sleep(2)
             try:    #Check if login is successfull or not (failed login means SignIn button still exists)
-                sign_in_button = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div/div[2]/div[2]/form/fieldset/div[3]/button')
+                print('try')
+                #sign_in_button = self.driver.find_element_by_xpath('/html/body/div[2]/div/div/div/div/div/div[2]/div[2]/form/fieldset/div[3]/button')
             except NoSuchElementException:
                 print("Login Failed. Please check your credentials at the 'config.json' file")
                 self.driver.quit()
@@ -94,26 +97,27 @@ class Screenshots:
     def check_percentageIsZero(self):
         #read actual percentage, page(pagina) and final book page (paginafinal) Sorry for not translating the objects name
         percentage_read = int(self.driver.find_element_by_class_name('percentage_read').text.replace(r'% lido',''))
-        pagina = int((self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '')).split(" DE ")[0])
-        paginafinal = int((self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '')).split(" DE ")[1])
+        pagina = int((self.driver.find_element_by_class_name('page_counter').text.replace("PÁGINA", '')).split(" DE ")[0])
+        paginafinal = int((self.driver.find_element_by_class_name('page_counter').text.replace("PÁGINA", '')).split(" DE ")[1])
         print("%: ",percentage_read,". pag: ", pagina) #prints the status of the reading
         #goes back to 0% or 1st page
         while percentage_read != 0 or pagina != 1:
             try:
-                self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/a[1]/span[2]').click()
-                percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
-                pagina = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '').split(" DE ")[0])
+                self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/a[1]/span[2]').click()
+                percentage_read = int(self.driver.find_element_by_class_name('percentage_read').text.replace(r'% lido',''))
+                pagina = int(self.driver.find_element_by_class_name('page_counter').text.replace("PÁGINA", '').split(" DE ")[0])
                 if pagina == 1:
                     return [percentage_read, pagina, paginafinal]
-            except:
-                print("Error within percentage if its not 0%. Lines 83-99")
-                break
+            except Exception as e:
+                print(e)
+                #print("Error within percentage if its not 0%. check_percentageIsZero")
+                #break
         return [percentage_read, pagina, paginafinal]
 
     def remove_bookmark_line(self):                 #removes bookmark line from the superior right corner with a js script
-        bookmark = self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/div[2]/span[2]')
+        bookmark = self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/div[2]/span[2]')
         element_id = bookmark.get_attribute("id")
-        js_string = str("var element = document.getElementById(\""+element_id+"\");element.remove();")
+        js_string = str("var element = document.getElementById(\""+ element_id +"\");element.remove();")
         self.driver.execute_script(js_string)
 
     #function to try to click the 'save book' popup so it doesn't appers in the screenshot
@@ -130,8 +134,8 @@ class Screenshots:
             pass
     
     def update_percentage(self):        #function to update the percentage and page progress
-        percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
-        pagina = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '').split(" DE ")[0])
+        percentage_read = int(self.driver.find_element_by_class_name('percentage_read').text.replace(r'% lido',''))
+        pagina = int(self.driver.find_element_by_class_name('page_counter').text.replace("PÁGINA", '').split(" DE ")[0])
         return percentage_read, pagina
     #########################################################################################
     def screenshot(self, read_url, book_title, email, password, book_id):
@@ -155,6 +159,9 @@ class Screenshots:
         self.login_check(email,password)    #Check if its logged and if not, login
 
         #click the 'read this book now' buttom
+        sleep(2)
+        #xpath above for debuging without premium account
+        #self.driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div/div/section/div/div/section/a[2]').click()
         self.driver.find_element_by_xpath('/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div/div/section/div/div/section/a').click()
         print("Read page done")
         sleep(7)
@@ -170,23 +177,24 @@ class Screenshots:
             i = 1
             while percentage_read != 100 or pagina != paginafinal:
                 sleep(2)
-                
-                self.popup_click()  #every page trying to click the 'save book' popup. Still get problems some time
-
+                try:
+                    self.popup_click()  #every page trying to click the 'save book' popup. Still get problems some time
+                except:
+                    print('No popup found!')
                 sleep(1)
                 file_name1 = str(book_title)+'_'+str(i).zfill(len(str(paginafinal)))  #filename for first colum/page
                 #first column/page screenshot
-                col1 = self.driver.find_element_by_xpath("/html/body/div[2]/div/div[4]/div/div[2]/div[1]/div[2]/div[1]").screenshot(img_path+file_name1+'_1.png')
+                col1 = self.driver.find_element_by_xpath("/html/body/div[2]/div/div[5]/div/div[2]/div[1]/div[3]/div[1]").screenshot(img_path+file_name1+'_1.png')
                 try:
                     file_name2 = str(book_title)+'_'+str(i).zfill(len(str(paginafinal)))  #filename for second colum/page
                     #second column/page screenshot
-                    col2 = self.driver.find_element_by_xpath("/html/body/div[2]/div/div[4]/div/div[2]/div[1]/div[2]/div[2]").screenshot(img_path+file_name2+'_2.png')
+                    col2 = self.driver.find_element_by_xpath("/html/body/div[2]/div/div[5]/div/div[2]/div[1]/div[3]/div[2]").screenshot(img_path+file_name2+'_2.png')
                 except Exception as e:
                     print(e)
                     print("Column 2 not found in this page") #Some books only shows one column per time
                     pass
                 #Pass to next page clicking the right arrow
-                self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/div[2]/div[1]/div[1]/button[2]').click()
+                self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/a[2]/span[2]').click()
                 print("Next page")
                 percentage_read, pagina = self.update_percentage()   #update percentage and page progress
                 print("%", percentage_read, ". Page= ", i)
@@ -195,9 +203,10 @@ class Screenshots:
                 #when completed closes chrome window
                 self.driver.quit()
 
-        except NoSuchElementException:
+        except Exception as e:
             self.driver.quit()
-            print('NoSuchElementException in screenshot function from lines 150-189')
+            print(e)
+            print('NoSuchElementException in screenshot function')
 
 
     ##################################################################################
