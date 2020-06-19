@@ -96,16 +96,16 @@ class Screenshots:
     #checks percentage and goes back to 0% if is not already
     def check_percentageIsZero(self):
         #read actual percentage, page(pagina) and final book page (paginafinal) Sorry for not translating the objects name
-        percentage_read = int(self.driver.find_element_by_class_name('percentage_read').text.replace(r'% lido',''))
-        pagina = int((self.driver.find_element_by_class_name('page_counter').text.replace("PÁGINA", '')).split(" DE ")[0])
-        paginafinal = int((self.driver.find_element_by_class_name('page_counter').text.replace("PÁGINA", '')).split(" DE ")[1])
+        percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
+        pagina = int((self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '')).split(" DE ")[0])
+        paginafinal = int((self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '')).split(" DE ")[1])
         print("%: ",percentage_read,". pag: ", pagina) #prints the status of the reading
         #goes back to 0% or 1st page
         while percentage_read != 0 or pagina != 1:
             try:
                 self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/a[1]/span[2]').click()
-                percentage_read = int(self.driver.find_element_by_class_name('percentage_read').text.replace(r'% lido',''))
-                pagina = int(self.driver.find_element_by_class_name('page_counter').text.replace("PÁGINA", '').split(" DE ")[0])
+                percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
+                pagina = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '').split(" DE ")[0])
                 if pagina == 1:
                     return [percentage_read, pagina, paginafinal]
             except Exception as e:
@@ -134,8 +134,8 @@ class Screenshots:
             pass
     
     def update_percentage(self):        #function to update the percentage and page progress
-        percentage_read = int(self.driver.find_element_by_class_name('percentage_read').text.replace(r'% lido',''))
-        pagina = int(self.driver.find_element_by_class_name('page_counter').text.replace("PÁGINA", '').split(" DE ")[0])
+        percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
+        pagina = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '').split(" DE ")[0])
         return percentage_read, pagina
     #########################################################################################
     def screenshot(self, read_url, book_title, email, password, book_id):
