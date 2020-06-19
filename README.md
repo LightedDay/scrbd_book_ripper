@@ -1,3 +1,5 @@
+##Scribd is changing some of its xpaths so it breaks the script sometimes. I will do the best I can to keep updating it! If you find errors please report
+
 Scribd Book Ripper
 ============
 [![GitHub stars](https://img.shields.io/github/stars/athossampayo/scrbd_book_ripper)](https://github.com/athossampayo/scrbd_book_ripper/stargazers) [![GitHub issues](https://img.shields.io/github/issues/athossampayo/scrbd_book_ripper)](https://github.com/athossampayo/scrbd_book_ripper/issues) [![GitHub forks](https://img.shields.io/github/forks/athossampayo/scrbd_book_ripper)](https://github.com/athossampayo/scrbd_book_ripper/network) [![Version type](https://img.shields.io/badge/version%20type-image-blue)](https://img.shields.io/badge/vers__type-image__version-blue) </br>
