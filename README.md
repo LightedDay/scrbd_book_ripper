@@ -1,4 +1,4 @@
-##Scribd is changing some of its xpaths so it breaks the script sometimes. I will do the best I can to keep updating it! If you find errors please report
+## Scribd is changing some of its xpaths so it breaks the script sometimes. I will do the best I can to keep updating it! If you find errors please report
 
 Scribd Book Ripper
 ============
