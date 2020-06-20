@@ -9,12 +9,18 @@ Scribd Book Ripper
 #### This version creates a screenshot of every book page and then generates a PDF file with it. It has the optional ability to generate Searchable Text (as known as OCR) too.
 ### I have a version of this script that isn't screenshot-based in finishing process, just need to solve one big problem and will release it.
 ## Table of contents
+* [Special Thanks](#special-thanks)
 * [General info](#general-info)
 * [Stats](#stats)
 * [Dependencies](#dependencies)
 * [OCR Setup](#ocr-setup)
 * [Script Setup](#script-setup)
 * [Disclaimer](#disclaimer)
+
+## Special Thanks
+#### Reddit Users that made debugging really happen and find bugs that i could not find myself:
++ u/Ephemeral-Throwaway
++ u/Ronald_Halbal
 
 ## General info
 This project receives one or more Scribd links and generates a PDF within the books content. It has the option to generate a Searchable PDF too.
