@@ -35,7 +35,6 @@ class Screenshots:
             self.driver.find_element_by_xpath(sign_buttom).click()
             print("Clicked Log In buttom")
             return sign_buttom
-                                                   
         except NoSuchElementException:
             self.driver.quit()
             print('NoSuchElementException on login() function')
@@ -96,16 +95,16 @@ class Screenshots:
     #checks percentage and goes back to 0% if is not already
     def check_percentageIsZero(self):
         #read actual percentage, page(pagina) and final book page (paginafinal) Sorry for not translating the objects name
-        percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
-        pagina = int((self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '')).split(" DE ")[0])
-        paginafinal = int((self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '')).split(" DE ")[1])
+        percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
+        pagina = int((self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '')).split(" DE ")[0])
+        paginafinal = int((self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '')).split(" DE ")[1])
         print("%: ",percentage_read,". pag: ", pagina) #prints the status of the reading
         #goes back to 0% or 1st page
         while percentage_read != 0 or pagina != 1:
             try:
-                self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/a[1]/span[2]').click()
-                percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
-                pagina = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '').split(" DE ")[0])
+                self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/a[1]/span[2]').click()
+                percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
+                pagina = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '').split(" DE ")[0])
                 if pagina == 1:
                     return [percentage_read, pagina, paginafinal]
             except Exception as e:
@@ -115,7 +114,7 @@ class Screenshots:
         return [percentage_read, pagina, paginafinal]
 
     def remove_bookmark_line(self):                 #removes bookmark line from the superior right corner with a js script
-        bookmark = self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/div[2]/span[2]')
+        bookmark = self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/div[2]/span[2]')
         element_id = bookmark.get_attribute("id")
         js_string = str("var element = document.getElementById(\""+ element_id +"\");element.remove();")
         self.driver.execute_script(js_string)
@@ -134,8 +133,8 @@ class Screenshots:
             pass
     
     def update_percentage(self):        #function to update the percentage and page progress
-        percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
-        pagina = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '').split(" DE ")[0])
+        percentage_read = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[3]').text.replace(r'% lido',''))
+        pagina = int(self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/div').text.replace("PÁGINA", '').split(" DE ")[0])
         return percentage_read, pagina
     #########################################################################################
     def screenshot(self, read_url, book_title, email, password, book_id):
@@ -184,17 +183,17 @@ class Screenshots:
                 sleep(1)
                 file_name1 = str(book_title)+'_'+str(i).zfill(len(str(paginafinal)))  #filename for first colum/page
                 #first column/page screenshot
-                col1 = self.driver.find_element_by_xpath("/html/body/div[2]/div/div[5]/div/div[2]/div[1]/div[3]/div[1]").screenshot(img_path+file_name1+'_1.png')
+                col1 = self.driver.find_element_by_xpath("/html/body/div[2]/div/div[4]/div/div[2]/div[1]/div[2]/div[1]").screenshot(img_path+file_name1+'_1.png')
                 try:
                     file_name2 = str(book_title)+'_'+str(i).zfill(len(str(paginafinal)))  #filename for second colum/page
                     #second column/page screenshot
-                    col2 = self.driver.find_element_by_xpath("/html/body/div[2]/div/div[5]/div/div[2]/div[1]/div[3]/div[2]").screenshot(img_path+file_name2+'_2.png')
+                    col2 = self.driver.find_element_by_xpath("/html/body/div[2]/div/div[4]/div/div[2]/div[1]/div[2]/div[2]").screenshot(img_path+file_name2+'_2.png')
                 except Exception as e:
                     print(e)
                     print("Column 2 not found in this page") #Some books only shows one column per time
                     pass
                 #Pass to next page clicking the right arrow
-                self.driver.find_element_by_xpath('/html/body/div[2]/div/div[5]/div/span/div/nav/div[2]/div[2]/a[2]/span[2]').click()
+                self.driver.find_element_by_xpath('/html/body/div[2]/div/div[4]/div/span/div/nav/div[2]/div[2]/a[2]/span[2]').click()
                 print("Next page")
                 percentage_read, pagina = self.update_percentage()   #update percentage and page progress
                 print("%", percentage_read, ". Page= ", i)
