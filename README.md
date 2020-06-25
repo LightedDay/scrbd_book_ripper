@@ -1,4 +1,5 @@
 ## Scribd is changing some of its xpaths so it breaks the script sometimes. I will do the best I can to keep updating it! If you find errors please report
+### Please report any bugs or if anything is not working, I will try to fix as fast as I can!
 
 Scribd Book Ripper
 ============
@@ -42,7 +43,7 @@ This project needs the following python libraries to work:
 * fpdf
 * Pillow
 * ocrmypdf _(Optional. Needed for OCR)_
-##### For easy installing all at once, use ```pip install requirements.txt```.
+##### For easy installing all at once, use ```pip install -r requirements.txt```.
 * And will need to have Google Chrome installed. You can get it from [here](https://www.google.com/chrome/)
 
 ## OCR Setup
